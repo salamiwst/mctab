@@ -48,9 +48,14 @@ body {
   position: relative;
   padding: 2em;
   font-family: monospace;
+  overflow: auto;
 }
 
 #dummy {
   display: none;
   font-family: monospace;
+}
+
+.paragraph {
+  display: inline-block;
 }
