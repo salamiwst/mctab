@@ -26,8 +26,7 @@ $(function () {
 
   function updateText() {
     $('#dummy').css('font-size', $('#tab-content').css('font-size'));
-    var longestLineWidth = $('#dummy').html(longestLine(currentText)).width();
-    $('#dummy').html('');
+    var longestLineWidth = calcLineWidth(longestLine(currentText));
     console.log(longestLineWidth);
     $('#tab-content').css('-moz-column-width', longestLineWidth);
     outputText = currentText;
@@ -38,24 +37,23 @@ $(function () {
     //$('#tab-input').remove();
   }
 
+  function calcLineWidth(line) {
+    var lineWidth = $('#dummy').html(line).width();
+    $('#dummy').html('');
+    return lineWidth;
+  }
+
   function longestLine(text) {
-    var i = 0;
+    var lines = text.split('\n');
     var longestLineWidth = 0;
     var longestLine = "";
-    var line = "";
-    while (i < text.length) {
-      if (text.charAt(i) === '\n') {
-        var lineWidth = $('#dummy').html(line).width();
-        //console.log(lineWidth);
-        if (lineWidth > longestLineWidth) {
-          longestLineWidth = lineWidth;
-          longestLine = line;
-        }
-        line = "";
-      } else {
-        line = line.concat(text.charAt(i));
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i];
+      var lineWidth = calcLineWidth(line);
+      if (lineWidth > longestLineWidth) {
+        longestLineWidth = lineWidth;
+        longestLine = line;
       }
-      i++;
     }
     return longestLine;
   }
