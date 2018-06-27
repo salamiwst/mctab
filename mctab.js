@@ -13,7 +13,7 @@ $(function () {
 
   $('#change-text-size').buttonset();
 
-  $('#tab-input').on('paste', function (e) {
+  $(document).on('paste', function (e) {
     e.preventDefault();
     var clipboardText = e.originalEvent.clipboardData.getData("Text");
     if (clipboardText) {
