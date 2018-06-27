@@ -1,5 +1,6 @@
 $(function () {
   var currentText = '';
+  var preserveSpacing = false;
 
   $('#font-size-dec').button().click(function () {
     changeFontSize(-1);
@@ -31,11 +32,12 @@ $(function () {
     $('#tab-content').css('column-width', longestLineWidth);
     outputText = currentText;
     outputText = outputText.replace(/ /g, '&nbsp;');
-    outputText = '<div class="paragraph">\n' + outputText + '\n</div>';
-    outputText = outputText.replace(/^\s*[\r\n]/gm, '</div>\n<div class=\"paragraph\">\n');
+    outputText = '<p class="paragraph">\n' + outputText + '\n</p>';
+    if (!preserveSpacing) {
+      outputText = outputText.replace(/^\s*[\r\n]/gm, '</p><p class=\"paragraph\">');
+    }
     outputText = outputText.replace(/\n/g, '<br />');
     $('#tab-content').html(outputText);
-    //$('#tab-input').remove();
   }
 
   function calcLineWidth(line) {
