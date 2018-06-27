@@ -26,7 +26,7 @@ $(function () {
 
   function updateText() {
     $('#dummy').css('font-size', $('#tab-content').css('font-size'));
-    var longestLineWidth = calcLineWidth(longestLine(currentText));
+    var longestLineWidth = calcLongestLineWidth(currentText);
     console.log(longestLineWidth);
     $('#tab-content').css('column-width', longestLineWidth);
     outputText = currentText;
@@ -44,19 +44,17 @@ $(function () {
     return lineWidth;
   }
 
-  function longestLine(text) {
+  function calcLongestLineWidth(text) {
     var lines = text.split('\n');
     var longestLineWidth = 0;
-    var longestLine = "";
     for (var i = 0; i < lines.length; i++) {
       var line = lines[i];
       var lineWidth = calcLineWidth(line);
       if (lineWidth > longestLineWidth) {
         longestLineWidth = lineWidth;
-        longestLine = line;
       }
     }
-    return longestLine;
+    return longestLineWidth;
   }
 
   function changeFontSize(d) {
