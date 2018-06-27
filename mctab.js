@@ -28,7 +28,7 @@ $(function () {
     $('#dummy').css('font-size', $('#tab-content').css('font-size'));
     var longestLineWidth = calcLineWidth(longestLine(currentText));
     console.log(longestLineWidth);
-    $('#tab-content').css('-moz-column-width', longestLineWidth);
+    $('#tab-content').css('column-width', longestLineWidth);
     outputText = currentText;
     outputText = outputText.replace(/ /g, '&nbsp;');
     outputText = '<div class="paragraph">\n' + outputText + '\n</div>';
