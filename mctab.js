@@ -30,9 +30,9 @@ $(function () {
     console.log(longestLineWidth);
     $('#tab-content').css('-moz-column-width', longestLineWidth);
     outputText = currentText;
+    outputText = outputText.replace(/ /g, '&nbsp;');
     outputText = '<div class="paragraph">\n' + outputText + '\n</div>';
     outputText = outputText.replace(/^\s*[\r\n]/gm, '</div>\n<div class=\"paragraph\">\n');
-    outputText = outputText.replace(/ /g, '&nbsp;');
     outputText = outputText.replace(/\n/g, '<br />');
     $('#tab-content').html(outputText);
     //$('#tab-input').remove();
